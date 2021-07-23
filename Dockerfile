@@ -31,8 +31,6 @@ ENV         SAMBA_HOME=/usr/local/samba
 ENV         PATH=${SAMBA_HOME}/bin:${SAMBA_HOME}/sbin:$PATH
 COPY        --from=builder /usr/local/${SAMBA_DEST}/ /usr/local/${SAMBA_DEST}
 COPY        sh/apt-install/samba-dev.txt /usr/local/sh/apt-install
-COPY        etc/systemd/system/  /etc/systemd/system
-COPY        sh/system/  /usr/local/sh/system
 RUN         mkdir -p /usr/local/sh/pip3
 COPY        sh/pip3/        /usr/local/sh/pip3
 RUN         apt update && \
@@ -44,9 +42,13 @@ RUN         ln -s /usr/local/${SAMBA_DEST} /usr/local/samba && \
             ln -s /usr/local/etc/samba/smb.conf /usr/local/${SAMBA_DEST}/etc/samba/smb.conf && \
             echo "/usr/local/samba/lib/samba" >>/etc/ld.so.conf && \
             ldconfig && \
-            mkdir /var/log/samba && chown root.admin /var/log/samba && chmod 3770 /var/log/samba && \
+            mkdir /var/log/samba && chown root /var/log/samba && chmod 3770 /var/log/samba && \
+            mkdir /home/samba_users && chown root /home/samba_users && \
+                chmod 3775 /home/samba_users
+COPY        etc/systemd/system/  /etc/systemd/system
+COPY        sh/system/  /usr/local/sh/system
             # systemd
-            apt install -y systemd && \
+RUN         apt install -y systemd && \
             chown root /usr/local/sh/system/*.sh && chmod 775 /usr/local/sh/system/*.sh && \
             cd ~/ && apt clean && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT  ["/usr/local/sh/system/samba-entrypoint.sh"]

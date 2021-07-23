@@ -12,6 +12,8 @@ services:
             - /home/doc:/home/doc
             - /home/image:/home/image
             - /home/movie:/home/movie
+            - /home/karaspadmin:/home/samba_users/karaspadmin
+            - /home/karaspdev:/home/samba_users/karaspdev
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         networks:
             - raspinet
