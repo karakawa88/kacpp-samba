@@ -1,0 +1,13 @@
+##
+# docker-compose用環境変数スクリプト
+# kacpp-sambaで使用。
+# SAMBA_VERSION
+#   sambaのバージョン
+# SAMBA_DEST
+#   sambaディレクトリ名
+# SAMBA_HOME
+#   sambaがインストールされているディレクトリのパス
+SAMBA_VERSION=4.14.6
+SAMBA_DEST=samba-${SAMBA_VERSION}
+SAMBA_HOME=/usr/local/${SAMBA_DEST}
+
