@@ -5,6 +5,7 @@ After=network.target ntpd.service
 
 [Service]
 ExecStart=/usr/local/samba/sbin/nmbd -s /usr/local/etc/samba/smb.conf
+ExecReload=/usr/local/samba/bin/smbcontrol nmbd reload-config
 Restart=no
 Type=forking
 

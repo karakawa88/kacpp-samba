@@ -1,0 +1,18 @@
+/var/log/samba/samba.log
+{
+	rotate 7
+	weekly
+    size 10M
+	missingok
+	notifempty
+	delaycompress
+	compress
+    copytruncate
+    create 644 root admin
+    su root root
+	sharedscripts
+	postrotate
+        systemctl reload smbd
+        systemctl reload nmbd
+    endscript
+}

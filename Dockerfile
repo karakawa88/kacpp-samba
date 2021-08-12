@@ -51,4 +51,7 @@ COPY        sh/system/  /usr/local/sh/system
 RUN         apt install -y systemd && \
             chown root /usr/local/sh/system/*.sh && chmod 775 /usr/local/sh/system/*.sh && \
             cd ~/ && apt clean && rm -rf /var/lib/apt/lists/*
+# cronとlogrotateの設定
+COPY        etc/cron.d/     /etc/cron.d
+COPY        etc/logrotate.d/     /etc/logrotate.d
 ENTRYPOINT  ["/usr/local/sh/system/samba-entrypoint.sh"]
