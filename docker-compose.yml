@@ -10,7 +10,7 @@ services:
             - /home/local_etc:/usr/local/etc
             - /home/backup:/home/backup
             - /home/doc:/home/doc
-            - /home/image:/home/image
+            - /home/img:/home/image
             - /home/movie:/home/movie
             - /home/karaspadmin:/home/samba_users/karaspadmin
             - /home/karaspdev:/home/samba_users/karaspdev

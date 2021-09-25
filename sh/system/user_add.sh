@@ -51,7 +51,7 @@ do
     if ! is_user ${user}
     then
         useradd -d ${home_dir} -s ${shell} -g ${group} -G ${group} -u ${user_id} ${user}
-        echo ${user_password} | passwd --stdin ${user}
+        echo "${user}:${user_password}" | chpasswd
     fi
     # sambaユーザー追加
 #     if ! is_samba_user ${samba_user}

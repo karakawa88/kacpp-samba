@@ -7,7 +7,7 @@
 #   sambaディレクトリ名
 # SAMBA_HOME
 #   sambaがインストールされているディレクトリのパス
-SAMBA_VERSION=4.14.6
+SAMBA_VERSION=4.14.7
 SAMBA_DEST=samba-${SAMBA_VERSION}
 SAMBA_HOME=/usr/local/${SAMBA_DEST}
 
