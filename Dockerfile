@@ -45,6 +45,11 @@ RUN         ln -s /usr/local/${SAMBA_DEST} /usr/local/samba && \
             mkdir /var/log/samba && chown root /var/log/samba && chmod 3770 /var/log/samba && \
             mkdir /home/samba_users && chown root /home/samba_users && \
                 chmod 3775 /home/samba_users
+COPY        sh/init.d/ /usr/local/sh/init.d
+RUN         git clone --depth 1 'https://github.com/christgau/wsdd.git' && \
+            cp wsdd/src/wsdd.py /usr/local/sbin && \
+            chmod 755 /usr/local/sbin/wsdd.py && \
+            chmod 755 /usr/local/sh/init.d/wsdd.sh
 COPY        etc/systemd/system/  /etc/systemd/system
 COPY        sh/system/  /usr/local/sh/system
             # systemd

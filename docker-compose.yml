@@ -22,6 +22,8 @@ services:
             - "138:138/udp"
             - "139:139/tcp"
             - "445:445/tcp"
+            - "5357:5357/tcp"
+            - "3702:3702/udp"
         cap_add:
             - SYS_ADMIN
         privileged: true

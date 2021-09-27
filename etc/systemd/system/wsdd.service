@@ -1,0 +1,16 @@
+[Unit]
+Description=WS-Discoveryサービス wsdd
+#Wants=network.target dhcpcd5.service
+After=basic.target network-online.target ntpd.service kacpp-samba.service
+#Conflicts=systemd-timesyncd.service
+
+[Service]
+# ExecStart=/usr/local/sbin/ntpd -s -f /usr/local/etc/openntpd/ntpd.conf
+ExecStart=/usr/local/sh/init.d/wsdd.sh start
+ExecStop=/usr/local/sh/init.d/wsdd.sh stop
+Restart=no
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+

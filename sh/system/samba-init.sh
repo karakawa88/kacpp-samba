@@ -27,8 +27,10 @@ sleep 2
 systemctl daemon-reload
 systemctl enable smbd
 systemctl enable nmbd
+systemctl enable wsdd
 systemctl start smbd
 systemctl start nmbd
+systemctl start wsdd
 
 exit 0
 
