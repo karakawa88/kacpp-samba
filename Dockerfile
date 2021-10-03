@@ -46,6 +46,10 @@ RUN         ln -s /usr/local/${SAMBA_DEST} /usr/local/samba && \
             mkdir /home/samba_users && chown root /home/samba_users && \
                 chmod 3775 /home/samba_users
 COPY        sh/init.d/ /usr/local/sh/init.d
+# WSDサーバー wsddのインストールと環境構築
+RUN         mkdir /usr/local/sh/default_sysconfig && mkdir /usr/local/sh/sysconfig && \
+            chmod 3750 /usr/local/sh/default_sysconfig && chmod 3750 /usr/local/sh/sysconfig
+COPY        sh/default_sysconfig/   /usr/local/sh/default_sysconfig
 RUN         git clone --depth 1 'https://github.com/christgau/wsdd.git' && \
             cp wsdd/src/wsdd.py /usr/local/sbin && \
             chmod 755 /usr/local/sbin/wsdd.py && \

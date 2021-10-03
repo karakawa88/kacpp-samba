@@ -12,18 +12,30 @@ services:
             - /home/doc:/home/doc
             - /home/img:/home/image
             - /home/movie:/home/movie
+            - /home/storage:/home/storage
             - /home/karaspadmin:/home/samba_users/karaspadmin
             - /home/karaspdev:/home/samba_users/karaspdev
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
-        networks:
-            - raspinet
-        ports:
-            - "137:137/udp"
-            - "138:138/udp"
-            - "139:139/tcp"
-            - "445:445/tcp"
-            - "5357:5357/tcp"
-            - "3702:3702/udp"
+        network_mode: host
+        expose:
+            - "137"
+            - "138"
+            - "139"
+            - "445"
+            - "5357"
+            - "5358"
+            - "3702"
+#         networks:
+#             - raspinet
+#         ports:
+#             - "137:137/udp"
+#             - "138:138/udp"
+#             - "139:139/tcp"
+#             - "445:445/tcp"
+#             - "5357:5357/tcp"
+#             - "5358:5358/tcp"
+#             - "3702:3702/tcp"
+#             - "3702:3702/udp"
         cap_add:
             - SYS_ADMIN
         privileged: true
@@ -31,8 +43,8 @@ services:
         env_file: kacpp-samba.src
 #         environment:
 #             PGDATA: /home/data/db/pgdata
-networks:
-    raspinet:
-        external: true
+# networks:
+#     raspinet:
+#         external: true
 
 

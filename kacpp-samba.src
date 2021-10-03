@@ -10,4 +10,7 @@
 SAMBA_VERSION=4.14.7
 SAMBA_DEST=samba-${SAMBA_VERSION}
 SAMBA_HOME=/usr/local/${SAMBA_DEST}
+# wsddの環境変数設定ファイル
+WSDDSRC=/usr/local/etc/samba/wsdd
+
 

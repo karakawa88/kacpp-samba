@@ -25,10 +25,12 @@
 
 # 環境変数設定ファイルとその読み込み
 WSDDSRC=/usr/local/sh/sysconfig/wsdd
-if [[ -r $WSDDSRC ]]
+if [[ ! -r $WSDDSRC ]]
 then
-    source "$WSDDSRC"
+    cp /usr/local/sh/default_sysconfig/wsdd /usr/local/sh/sysconfig
 fi
+source "$WSDDSRC"
+
 # help文字列 
 USAGE_STRING="usage: wsdd.sh [start | reload | stop | start]"
 
@@ -49,13 +51,17 @@ function _preexec() {
     fi
     # オプション処理
     OPTS=""
+    if [[ -n $server_opts ]]
+    then
+        OPTS=" ${server_opts} "
+    fi
     if [[ -n $DOMAIN ]]
     then
-        OPTS=" -d $DOMAIN "
+        OPTS=" $OPTS -d $DOMAIN "
     else
         if [[ -n $WORKGROUP ]]
         then
-            OPTS=" -w $WORKGROUP "
+            OPTS=" $OPTS -w $WORKGROUP "
         fi
     fi
     if [[ -n $HOSTNM ]]

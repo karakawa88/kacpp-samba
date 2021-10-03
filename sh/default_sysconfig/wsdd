@@ -1,0 +1,15 @@
+##
+# WS-Discoveryサービス起動スクリプト環境変数設定ファイル
+# ファイル名: wsdd
+# 環境変数
+# server    サーバープログラムのパス
+# server_opts   その他にwsddに渡すオプション
+# DOMAIN    ドメイン名
+# WORKGROUP WORKGROUP名
+# HOSTNM    ホスト名
+server="/usr/local/sbin/wsdd.py"
+server_opts=" --ipv4only -H 20 "
+DOMAIN=""
+WORKGROUP="KARASPSMB"
+HOSTNM="KARASPSMBFS"
+
