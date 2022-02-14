@@ -15,6 +15,7 @@ services:
             - /home/storage:/home/storage
             - /home/karaspadmin:/home/samba_users/karaspadmin
             - /home/karaspdev:/home/samba_users/karaspdev
+            - /home/timemachine:/home/timemachine
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         network_mode: host
         expose:

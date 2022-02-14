@@ -57,8 +57,19 @@ RUN         git clone --depth 1 'https://github.com/christgau/wsdd.git' && \
 COPY        etc/systemd/system/  /etc/systemd/system
 COPY        sh/system/  /usr/local/sh/system
             # systemd
+ENV container docker
+VOLUME [ "/sys/fs/cgroup" ]
 RUN         apt install -y systemd && \
             chown root /usr/local/sh/system/*.sh && chmod 775 /usr/local/sh/system/*.sh && \
+            (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+            systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+            rm -f /lib/systemd/system/multi-user.target.wants/*;\
+            rm -f /etc/systemd/system/*.wants/*;\
+            rm -f /lib/systemd/system/local-fs.target.wants/*; \
+            rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+            rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+            rm -f /lib/systemd/system/basic.target.wants/*;\
+            rm -f /lib/systemd/system/anaconda.target.wants/* && \
             cd ~/ && apt clean && rm -rf /var/lib/apt/lists/*
 # cronとlogrotateの設定
 COPY        etc/cron.d/     /etc/cron.d
