@@ -58,7 +58,7 @@ COPY        etc/systemd/system/  /etc/systemd/system
 COPY        sh/system/  /usr/local/sh/system
             # systemd
 ENV container docker
-VOLUME [ "/sys/fs/cgroup" ]
+#VOLUME [ "/sys/fs/cgroup" ]
 RUN         apt install -y systemd && \
             chown root /usr/local/sh/system/*.sh && chmod 775 /usr/local/sh/system/*.sh && \
             (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \

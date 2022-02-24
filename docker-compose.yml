@@ -16,7 +16,7 @@ services:
             - /home/karaspadmin:/home/samba_users/karaspadmin
             - /home/karaspdev:/home/samba_users/karaspdev
             - /home/timemachine:/home/timemachine
-            - /sys/fs/cgroup:/sys/fs/cgroup:ro
+              #            - /sys/fs/cgroup:/sys/fs/cgroup:ro
         network_mode: host
         expose:
             - "137"
