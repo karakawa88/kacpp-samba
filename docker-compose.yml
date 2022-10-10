@@ -3,19 +3,20 @@ version: "3"
 # docker run --privileged -dit --name kacpp-mail --net kaawsnet -p 25:25 -p 465:465 -p 587:587 -v /home:/home/mail_users -v /home/local_etc:/usr/local/etc kagalpandh/kacpp-mail
 
 services:
-    kacpp-mail:
+    kacpp-samba:
         image: kagalpandh/kacpp-samba
         container_name: kacpp-samba
         volumes:
             - /home/local_etc:/usr/local/etc
-            - /home/backup:/home/backup
+            - /home/data/backup:/home/backup
             - /home/doc:/home/doc
             - /home/img:/home/image
+            - /home/music:/home/music
             - /home/movie:/home/movie
             - /home/storage:/home/storage
             - /home/karaspadmin:/home/samba_users/karaspadmin
             - /home/karaspdev:/home/samba_users/karaspdev
-            - /home/timemachine:/home/timemachine
+              #            - /home/timemachine:/home/timemachine
               #            - /sys/fs/cgroup:/sys/fs/cgroup:ro
         network_mode: host
         expose:

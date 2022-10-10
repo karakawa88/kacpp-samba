@@ -5,7 +5,7 @@ SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
 ENV         DEBIAN_FORONTEND=noninteractive
 # https://download.samba.org/pub/samba/stable/samba-4.14.5.tar.gz
-ENV         SAMBA_VERSION=4.14.7
+ENV         SAMBA_VERSION=4.17.0
 ENV         SAMBA_DEST=samba-${SAMBA_VERSION}
 ENV         SAMBA_SRC_FILE=${SAMBA_DEST}.tar.gz
 ENV         SAMBA_URL="https://download.samba.org/pub/samba/${SAMBA_SRC_FILE}"
@@ -25,11 +25,11 @@ RUN         wget ${SAMBA_URL} && tar -zxvf ${SAMBA_SRC_FILE} && cd ${SAMBA_DEST}
 FROM        kagalpandh/kacpp-pydev
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
-ENV         SAMBA_VERSION=4.14.7
+ENV         SAMBA_VERSION=4.17.0
 ENV         SAMBA_DEST=samba-${SAMBA_VERSION}
 ENV         SAMBA_HOME=/usr/local/samba
 ENV         PATH=${SAMBA_HOME}/bin:${SAMBA_HOME}/sbin:$PATH
-COPY        --from=builder /usr/local/${SAMBA_DEST}/ /usr/local/${SAMBA_DEST}
+COPY        --from=builder  /usr/local/${SAMBA_DEST}/ /usr/local/${SAMBA_DEST}
 COPY        sh/apt-install/samba-dev.txt /usr/local/sh/apt-install
 RUN         mkdir -p /usr/local/sh/pip3
 COPY        sh/pip3/        /usr/local/sh/pip3
