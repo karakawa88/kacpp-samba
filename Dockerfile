@@ -9,6 +9,8 @@ ENV         SAMBA_VERSION=4.17.0
 ENV         SAMBA_DEST=samba-${SAMBA_VERSION}
 ENV         SAMBA_SRC_FILE=${SAMBA_DEST}.tar.gz
 ENV         SAMBA_URL="https://download.samba.org/pub/samba/${SAMBA_SRC_FILE}"
+ENV         SAMBA_GPG_PUBKEY="samba-pubkey.asc"
+ENV         SAMBA_GPG_PUBKEY_URL="https://download.samba.org/pub/samba/${SAMBA_GPG_PUBKEY}"
 ENV         SAMBA_HOME=/usr/local/${SAMBA_DEST}
 COPY        sh/apt-install/  /usr/local/sh/apt-install
 RUN         mkdir -p /usr/local/sh/pip3
@@ -18,7 +20,13 @@ RUN         apt update && \
 #             /usr/local/sh/system/apt-install.sh install gccdev.txt && \
                 /usr/local/sh/system/apt-install.sh install samba-dev.txt && \
                 pip3 install $(cat /usr/local/sh/pip3/samba-pip3.txt | xargs)
-RUN         wget ${SAMBA_URL} && tar -zxvf ${SAMBA_SRC_FILE} && cd ${SAMBA_DEST} && \
+RUN         wget ${SAMBA_URL} && wget ${SAMBA_URL}.asc && \
+#           GPG verify
+            wget ${SAMBA_GPG_PUBKEY_URL} && \
+                gpg --import ${SAMBA_GPG_PUBKEY} && \
+                gpg ${SAMBA_SRC_FILE}.asc
+#           samba build
+            tar -zxvf ${SAMBA_SRC_FILE} && cd ${SAMBA_DEST} && \
                 ./configure --prefix=/usr/local/${SAMBA_DEST} --enable-fhs && \
                 make && make install && \
                 apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/*
