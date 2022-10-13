@@ -17,7 +17,7 @@ RUN         mkdir -p /usr/local/sh/pip3
 COPY        sh/pip3/        /usr/local/sh/pip3
 # 開発環境インストール
 RUN         apt update && \
-#             /usr/local/sh/system/apt-install.sh install gccdev.txt && \
+            /usr/local/sh/system/apt-install.sh install gccdev.txt && \
                 /usr/local/sh/system/apt-install.sh install samba-dev.txt && \
                 pip3 install $(cat /usr/local/sh/pip3/samba-pip3.txt | xargs)
 RUN         wget ${SAMBA_URL} && wget ${SAMBA_URL}.asc && \
