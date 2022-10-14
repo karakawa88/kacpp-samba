@@ -41,8 +41,9 @@ services:
         cap_add:
             - SYS_ADMIN
         privileged: true
-        restart: always
+#         restart: always
         env_file: kacpp-samba.src
+#         entrypoint: /bin/bash
 #         environment:
 #             PGDATA: /home/data/db/pgdata
 # networks:

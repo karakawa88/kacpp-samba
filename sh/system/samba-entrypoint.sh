@@ -14,5 +14,5 @@ then
     /usr/local/sh/system/user_add.sh ${users_list}
 fi
 
-exec /sbin/init
+exec /bin/systemd
 
