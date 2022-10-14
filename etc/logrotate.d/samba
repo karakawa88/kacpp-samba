@@ -8,9 +8,8 @@
 	delaycompress
 	compress
     copytruncate
-    create 644 root admin
+    create 644 root root
     su root root
-	sharedscripts
 	postrotate
         systemctl reload smbd
         systemctl reload nmbd
