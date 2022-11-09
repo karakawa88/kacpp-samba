@@ -15,13 +15,13 @@ then
 fi
 
 # pdbeditのパスワードファイルの設定
-SAMBA_TDB_DIR=${SAMBA_HOME}/var/lib/samba/private
-# SAMBA_TDB_FILE=${TDB_DIR}/passdb.tdb
-TDB_DIR="/usr/local/etc/samba/private"
-if [[ -d ${TDB_DIR} ]]
-then
-    cp -rf ${TDB_DIR} ${SAMBA_TDB_DIR}
-fi
+# SAMBA_TDB_DIR=${SAMBA_HOME}/var/lib/samba/private
+# # SAMBA_TDB_FILE=${TDB_DIR}/passdb.tdb
+# TDB_DIR="/usr/local/etc/samba/private"
+# if [[ -d ${TDB_DIR} ]]
+# then
+#     cp -rf ${TDB_DIR} ${SAMBA_TDB_DIR}
+# fi
 
 # wsddの環境変数設定ファイルの配置
 # デフォルトの環境変数は/usr/local/sh/default_sysconfig/wsddである。
