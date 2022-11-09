@@ -10,7 +10,7 @@ services:
             - /home/local_etc:/usr/local/etc
             - /home/data/backup:/home/backup
             - /home/doc:/home/doc
-            - /home/img:/home/image
+            - /home/img:/home/img
             - /home/music:/home/music
             - /home/movie:/home/movie
             - /home/storage:/home/storage
