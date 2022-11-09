@@ -72,7 +72,7 @@ ENV container docker
 RUN         apt install -y systemd && \
             chown root /usr/local/sh/system/*.sh && chmod 775 /usr/local/sh/system/*.sh && \
             # メールサーバーexim4が何故かインストールされるのでアンインストール
-            apt remove --purge exim-base && \
+            apt remove --purge exim4-base && \
             (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
             systemd-tmpfiles-setup.service ] || rm -f $i; done); \
             rm -f /lib/systemd/system/multi-user.target.wants/*;\
